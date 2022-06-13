@@ -5,25 +5,24 @@ import axios from "axios";
 const API_URL = "http://localhost:5005";
 
 function SignupPage(props) {
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const navigate = useNavigate();
 
+  const handleName = (e) => setName(e.target.value);
+  const handleUsername = (e) => setUsername(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
-  const handleName = (e) => setName(e.target.value);
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    // Create an object representing the request body
-    const requestBody = { email, password, name };
+    const requestBody = { name, username, email, password };
 
-    // Make an axios request to the API
-    // If POST request is successful redirect to login page
-    // If the request resolves with an error, set the error message in the state
     axios
       .post(`${API_URL}/auth/signup`, requestBody)
       .then((response) => {
@@ -40,6 +39,13 @@ function SignupPage(props) {
       <h1>Sign Up</h1>
 
       <form onSubmit={handleSignupSubmit}>
+        
+      <label>Name:</label>
+        <input type="text" name="name" value={name} onChange={handleName} />
+        
+        <label>Username:</label>
+        <input type="text" name="username" value={username} onChange={handleUsername} />
+
         <label>Email:</label>
         <input type="email" name="email" value={email} onChange={handleEmail} />
 
@@ -50,9 +56,6 @@ function SignupPage(props) {
           value={password}
           onChange={handlePassword}
         />
-
-        <label>Name:</label>
-        <input type="text" name="name" value={name} onChange={handleName} />
 
         <button type="submit">Sign Up</button>
       </form>

@@ -1,10 +1,25 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom";
+import HomePage from './pages/HomePage';
+import SignupPage from './pages/SignupPage';
+import LoginPage from './pages/LoginPage';
+import ProfilePage from './pages/ProfilePage';
+import GalleriesPage from './pages/GalleriesPage';
+import IsPrivate from "./components/IsPrivate";
+import IsAnon from "./components/IsAnon";
 
 function App() {
   return (
     <div className="App">
       <Routes>
+      <Route
+          path="/"
+          element={
+            <IsAnon>
+              <HomePage />
+            </IsAnon>
+          }
+        />
       <Route
           path="/signup"
           element={
@@ -19,6 +34,22 @@ function App() {
             <IsAnon>
               <LoginPage />
             </IsAnon>
+          }
+        />
+        <Route
+          path="/api/galleries"
+          element={
+            <IsPrivate> 
+              <GalleriesPage />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/api/artists"
+          element={
+            <IsPrivate> 
+              <ProfilePage />
+            </IsPrivate>
           }
         />
       </Routes>

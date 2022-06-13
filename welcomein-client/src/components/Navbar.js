@@ -8,20 +8,27 @@ function Navbar() {
   return (
     <nav className="Navbar">
       <Link to="/">
-        {/* <button>Home</button> Will be the logo */}
+        {/* <button>Home</button> Will be the logo 
+        
+        */}
       </Link>
 
+      
       {isLoggedIn && (
         <>
-          <Link to="/projects">
-            <button>Projects</button>
+          <Link to="/api/galleries">
+            <button>Galeries</button>
+          </Link>
+          <Link to="/api/profile">
+            <button>Profile</button>
+            {/* <img /> Button or  profile image*/}
           </Link>
           <button onClick={logOutUser}>Logout</button>
           <span>{user && user.name}</span>
         </>
       )}
 
-      {/* {!isLoggedIn && (
+       {!isLoggedIn && (
         <>
           <Link to="/signup">
             <button>Sign Up</button>
@@ -30,7 +37,7 @@ function Navbar() {
             <button>Login</button>
           </Link>
         </>
-      )} */}
+      )}
     </nav>
   );
 }
