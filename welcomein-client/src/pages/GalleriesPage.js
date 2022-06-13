@@ -30,11 +30,14 @@ export default function GalleriesPage() {
   return (
     <div className="GalleriesPage">
         <Navbar />
-        {galleries.length > 0 && (
+        {galleries.map((gallery) => (
+            <GalleryCard key={gallery.id} {...gallery} />
+            ))}
+        {/* {galleries.length > 0 && (
             <h2>There are no galleries yet.</h2>
         )}
 
-        {/* <section>
+        <section>
             {galleries.map((gallery) => (
             <GalleryCard key={gallery.id} {...gallery} />
             ))}

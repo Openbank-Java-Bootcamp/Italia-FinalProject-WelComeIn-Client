@@ -5,45 +5,39 @@ import Navbar from "../components/Navbar";
 
 const API_URL = "http://localhost:5005";
 
-function ProfilePage(props) {
-  const [artist, setArtist] = useState([]);
+export default function GalleryContentPage(props) {
+    const [gallery, setGallery] = useState([]);
 
-  // Get the URL parameter `:artistId`
-  const { artistId } = useParams();
+  // Get the URL parameter `:galleryId`
+  const { galleryId } = useParams();
 
   // Helper function that makes a GET request to the API
-  // and retrieves the artist by id
-  const getArtist = () => {
+  // and retrieves the gallery by id
+  const getGallery = () => {
     // Get the token from the localStorage
     const storedToken = localStorage.getItem("authToken");
 
     // Send the token through the request "Authorization" Headers
     axios
-      .get(`${API_URL}/api/artists/${artistId}`, {
+      .get(`${API_URL}/api/galleries/${artistId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .then((response) => setArtist(response.data))
+      .then((response) => setGallery(response.data))
       .catch((error) => console.log(error));
   };
-
-  useEffect(() => {
-    getArtist();
-  }, []);
-
   return (
-    <div className="ProfilePage">
+    <div className="GalleryContentPage">
         <Navbar />
         {/* Edit profile */}
-        <div className="ProfileCont">
+        <div className="GalleryCont">
+            <h2>`${gallery.name} Gallery`</h2>
+            <h6>Curated by: {gallery.artist.name}</h6>
             <img 
             src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZSUyMHBob3RvfGVufDB8fDB8fA%3D%3D&w=1000&q=80" 
             alt="Name's profile pic" className="ProfilePic" width="15%"/>
-            <h2>{artist.name}</h2>
-            <h4>{artist.username}</h4>
-            <p>{artist.biography}</p>
+            
+            links
          </div>  
     </div>
-  );
+  )
 }
-
-export default ProfilePage;

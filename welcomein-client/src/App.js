@@ -45,7 +45,7 @@ function App() {
           }
         />
         <Route
-          path="/api/artists"
+          path="/api/artists/:artistId"
           element={
             <IsPrivate> 
               <ProfilePage />
