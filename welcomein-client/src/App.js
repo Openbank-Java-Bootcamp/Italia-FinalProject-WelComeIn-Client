@@ -7,6 +7,7 @@ import ProfilePage from './pages/ProfilePage';
 import GalleriesPage from './pages/GalleriesPage';
 import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
+import GalleryContentPage from './pages/GalleryContentPage';
 
 function App() {
   return (
@@ -41,6 +42,14 @@ function App() {
           element={
             <IsPrivate> 
               <GalleriesPage />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/api/galleries/:galleryId"
+          element={
+            <IsPrivate> 
+              <GalleryContentPage />
             </IsPrivate>
           }
         />
