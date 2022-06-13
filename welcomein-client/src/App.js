@@ -16,9 +16,7 @@ function App() {
       <Route
           path="/"
           element={
-            <IsAnon>
               <HomePage />
-            </IsAnon>
           }
         />
       <Route

@@ -19,12 +19,12 @@ function Navbar() {
           <Link to="/api/galleries">
             <button>Galeries</button>
           </Link>
-          <Link to="/api/profile">
+          <Link to="/api/artists/:artistId">
             <button>Profile</button>
-            {/* <img /> Button or  profile image*/}
           </Link>
           <button onClick={logOutUser}>Logout</button>
           <span>{user && user.name}</span>
+          {/* <img /> Button or  profile image*/}
         </>
       )}
 
