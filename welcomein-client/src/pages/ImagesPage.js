@@ -1,3 +1,10 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Link} from "react-router-dom";
+import Navbar from "../components/Navbar";
+
+const API_URL = "http://localhost:5005";
+
 function ImagesPage() {
   const [images, setImages] = useState();
 
@@ -23,8 +30,8 @@ function ImagesPage() {
     <div>
       <Navbar />
       {images.map((image) => (
-        <Link to={`/api/images/${id}`}>
-          <img src={`${icon}`} />
+        <Link to={`/api/images/${image.id}`}>
+          <img src={`${image.file}`} />
           <h3>{image.name}</h3>
         </Link>
           ))}

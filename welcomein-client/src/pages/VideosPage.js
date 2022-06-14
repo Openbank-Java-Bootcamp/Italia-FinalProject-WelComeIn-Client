@@ -1,3 +1,10 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Link} from "react-router-dom";
+import Navbar from "../components/Navbar";
+
+const API_URL = "http://localhost:5005";
+
 function VideosPage() {
   const [videos, setVideos] = useState();
 
@@ -23,8 +30,8 @@ function VideosPage() {
     <div>
       <Navbar />
       {videos.map((video) => (
-        <Link to={`/api/videos/${id}`}>
-          <img src={`${icon}`} />
+        <Link to={`/api/videos/${video.id}`}>
+          <img src={`${video.file}`} />
           <h3>{video.name}</h3>
         </Link>
           ))}

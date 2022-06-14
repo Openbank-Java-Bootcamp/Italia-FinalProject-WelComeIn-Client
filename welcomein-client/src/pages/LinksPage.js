@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Navbar from '../components/Navbar'
 const API_URL = "http://localhost:5005";
@@ -28,8 +29,8 @@ function LinksPage() {
       <div>
         <Navbar />
         {links.map((link) => (
-          <Link to={`/api/links/${id}`}>
-            <img src={`${icon}`} />
+          <Link to={`/api/links/${link.id}`}>
+            <img src={`${link.file}`} />
             <h3>{link.name}</h3>
           </Link>
             ))}
