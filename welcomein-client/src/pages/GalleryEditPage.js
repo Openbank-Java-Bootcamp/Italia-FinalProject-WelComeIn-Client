@@ -43,7 +43,7 @@ function GalleryEditPage(props) {
     e.preventDefault();
     const storedToken = localStorage.getItem("authToken");
     // Create an object representing the body of the PUT request
-    const requestBody = { name, icon, slogan, password, picture, avatar, biography, background};
+    const requestBody = { name, icon, slogan, background};
 
     // Make a PUT request to update the gallery
     axios

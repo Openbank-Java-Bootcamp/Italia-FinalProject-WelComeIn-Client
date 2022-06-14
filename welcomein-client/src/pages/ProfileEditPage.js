@@ -61,7 +61,7 @@ function ProfileEditPage(props) {
       .then((response) => {
         // Once the request is resolved successfully and the artist
         // is updated we navigate back to the profile page
-        navigate("/artists/" + artistId);
+        navigate("/api/artists/" + artistId);
       });
   };
 
@@ -146,7 +146,7 @@ function ProfileEditPage(props) {
         <button type="submit">Update Profile</button>
       </form>
 
-      <button onClick={deleteProject}>Delete Account</button>
+      <button onClick={deleteAccount}>Delete Account</button>
     </div>
   )
 }

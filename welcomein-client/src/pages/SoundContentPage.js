@@ -28,7 +28,7 @@ const getSound = () => {
 // We set this effect will run only once, after the initial render
 // by setting the empty dependency array - []
 useEffect(() => {
-    setSound();
+    getSound();
 }, []);
 
   return (
