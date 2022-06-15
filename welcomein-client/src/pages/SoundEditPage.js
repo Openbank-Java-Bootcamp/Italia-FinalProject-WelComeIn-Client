@@ -6,7 +6,6 @@ const API_URL = "http://localhost:5005";
 
 function SoundEditPage(props) {
   const [title, setTitle] = useState("");
-  const [icon, setIcon] = useState("");
   const [file, setFile] = useState("");
   const [description, setDescription] = useState("");
 
@@ -31,7 +30,6 @@ function SoundEditPage(props) {
         */
         const theSound = response.data;
         setTitle(theSound.title);
-        setIcon(theSound.icon);
         setFile(theSound.file);
         setDescription(theSound.description);
       })
@@ -42,7 +40,7 @@ function SoundEditPage(props) {
     e.preventDefault();
     const storedToken = localStorage.getItem("authToken");
     // Create an object representing the body of the PUT request
-    const requestBody = { title, icon, file, description};
+    const requestBody = { title, file, description};
 
     // Make a PUT request to update the sound
     axios
@@ -69,6 +67,15 @@ function SoundEditPage(props) {
   };
   return (
     <div className="SoundEditPage">
+      
+      {/* <label>File:</label>
+        <input
+          type="text"
+          title="file"
+          value={file}
+          onChange={(e) => setFile(e.target.value)}
+        /> */}
+
       <form onSubmit={handleFormSubmit}>
         <label>Title:</label>
         <input
@@ -76,22 +83,6 @@ function SoundEditPage(props) {
           title="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-        />
-
-        <label>Icon:</label>
-        <input
-          type="text"
-          title="icon"
-          value={icon}
-          onChange={(e) => setIcon(e.target.value)}
-        />
-
-        <label>File:</label>
-        <input
-          type="text"
-          title="file"
-          value={file}
-          onChange={(e) => setFile(e.target.value)}
         />
 
         <label>Description:</label>

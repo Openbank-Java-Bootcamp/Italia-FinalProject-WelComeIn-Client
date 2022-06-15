@@ -7,7 +7,17 @@ const API_URL = "http://localhost:5005";
 function ImagesPage(props) {
   const [images, setImages] = useState([]);
 
-  // Get the URL parameter `:galleryId`
+//   const getAllImages = () => {
+//   const storedToken = localStorage.getItem("authToken");
+//   axios
+//   .get(`${API_URL}/api/images`, {
+//       headers: { Authorization: `Bearer ${storedToken}` },
+//   })
+//   .then((response) => setImages(response.data))
+//   .catch((error) => console.log(error));
+// };
+
+  //Get the URL parameter `:galleryId`
   const { galleryId } = useParams();
   console.log(galleryId);
 
@@ -34,6 +44,7 @@ function ImagesPage(props) {
   }, []);
   return (
     <div className="ImagesPage">
+      <h3>holo</h3>
       {images.map((image) => (
         <Link to={`/images/${image.id}`}>
           <img src="{image.file}" alt={`${image.title} Image`}/>

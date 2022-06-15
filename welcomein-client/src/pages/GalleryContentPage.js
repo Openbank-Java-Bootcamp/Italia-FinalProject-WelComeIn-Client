@@ -23,6 +23,7 @@ function GalleryContentPage(props) {
       })
       .then((response) => setGallery(response.data))
       .catch((error) => console.log(error));
+      console.log(galleryId)
   };
 
   // We set this effect will run only once, after the initial render
@@ -52,7 +53,7 @@ function GalleryContentPage(props) {
         </Link>
       </div>
       <div className="GalleryImages">
-        <Link to="/images">
+        <Link to="/images" galleryId={galleryId}>
           <img src="" alt="image icon" />
           <h3>Images</h3>
         </Link>

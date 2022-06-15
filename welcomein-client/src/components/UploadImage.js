@@ -6,7 +6,6 @@ const API_URL = "http://localhost:5005";
 function UploadImage(props) {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState("");
-  const [icon, setIcon] = useState("");
   const [description, setDescription] = useState("");
 
   const handleSubmit = (e) => {
@@ -26,7 +25,6 @@ function UploadImage(props) {
         // Reset the state to clear the inputs
         setTitle("");
         setFile("");
-        setIcon("");
         setDescription("");
 
         // Invoke the callback function coming through the props
@@ -49,27 +47,7 @@ function UploadImage(props) {
           onChange={(e) => setTitle(e.target.value)}
         />
 
-        <label>File:</label>
-        <div>
-            <input type="file" onChange={this.onFileChange} />
-            <button onClick={this.onFileUpload}>
-                Upload!
-            </button>
-        </div>
-        <textarea
-          type="text"
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-
-        <label>Icon:</label>
-        <input
-          type="text"
-          name="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+        {/* Add fileUploadComponent */}
 
         <label>Description:</label>
         <textarea

@@ -4,8 +4,8 @@ import axios from "axios";
 
 const API_URL = "http://localhost:5005";
 
-function LinksPage() {
-    const [links, setLinks] = useState();
+function LinksPage(props) {
+    const [links, setLinks] = useState([]);
 
     const getAllLinks = () => {
         // Get the token from the localStorage

@@ -8,6 +8,10 @@ function GalleryEditPage(props) {
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("");
   const [slogan, setSlogan] = useState("");
+  const [imagesIcon, setImagesIcon] = useState("");
+  const [videosIcon, setVideosIcon] = useState("");
+  const [soundsIcon, setSoundsIcon] = useState("");
+  const [linksIcon, setLinksIcon] = useState("");
   const [background, setBackground] = useState("");
 
   // Get the URL parameter `:galleryId`
@@ -33,6 +37,10 @@ function GalleryEditPage(props) {
         setName(theArtist.name);
         setIcon(theArtist.icon);
         setSlogan(theArtist.slogan);
+        setImagesIcon(theArtist.imagesIcon);
+        setVideosIcon(theArtist.videosIcon);
+        setSoundsIcon(theArtist.soundsIcon);
+        setLinksIcon(theArtist.linksIcon);
         setBackground(theArtist.background);
       })
       .catch((error) => console.log(error));
@@ -81,12 +89,12 @@ function GalleryEditPage(props) {
         <label>Username:</label>
         <input
           type="text"
-          name="icon"
-          value={icon}
+          name="username"
+          value={username}
           onChange={(e) => setIcon(e.target.value)}
         />
 
-        <label>Email:</label>
+        <label>Slogan:</label>
         <input
           type="text"
           name="slogan"
@@ -101,6 +109,7 @@ function GalleryEditPage(props) {
           value={background}
           onChange={(e) => setBackground(e.target.value)}
         />
+        {/* select icons for media and gallery*/}
 
         <button type="submit">Update Gallery</button>
       </form>

@@ -6,7 +6,6 @@ const API_URL = "http://localhost:5005";
 
 function ImageEditPage(props) {
   const [title, setTitle] = useState("");
-  const [icon, setIcon] = useState("");
   const [file, setFile] = useState("");
   const [description, setDescription] = useState("");
 
@@ -31,7 +30,6 @@ function ImageEditPage(props) {
         */
         const theImage = response.data;
         setTitle(theImage.title);
-        setIcon(theImage.icon);
         setFile(theImage.file);
         setDescription(theImage.description);
       })
@@ -42,7 +40,7 @@ function ImageEditPage(props) {
     e.preventDefault();
     const storedToken = localStorage.getItem("authToken");
     // Create an object representing the body of the PUT request
-    const requestBody = { title, icon, file, description};
+    const requestBody = { title, file, description};
 
     // Make a PUT request to update the image
     axios
@@ -69,6 +67,14 @@ function ImageEditPage(props) {
   };
   return (
     <div className="ImageEditPage">
+      {/* Show Image (not editable)<label>File:</label>
+        <input
+          type="text"
+          title="file"
+          value={file}
+          onChange={(e) => setFile(e.target.value)}
+        /> */}
+
       <form onSubmit={handleFormSubmit}>
         <label>Title:</label>
         <input
@@ -76,22 +82,6 @@ function ImageEditPage(props) {
           title="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-        />
-
-        <label>Icon:</label>
-        <input
-          type="text"
-          title="icon"
-          value={icon}
-          onChange={(e) => setIcon(e.target.value)}
-        />
-
-        <label>File:</label>
-        <input
-          type="text"
-          title="file"
-          value={file}
-          onChange={(e) => setFile(e.target.value)}
         />
 
         <label>Description:</label>
