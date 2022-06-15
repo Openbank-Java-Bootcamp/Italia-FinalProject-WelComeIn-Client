@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-import Navbar from "../components/Navbar";
 
 const API_URL = "http://localhost:5005";
 
@@ -32,7 +31,6 @@ function ProfilePage(props) {
 
   return (
     <div className="ProfilePage">
-        <Navbar />
         {/* Edit profile */}
         <div className="ProfileCont">
             <img 

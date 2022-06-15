@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import Navbar from "../components/Navbar";
 
 const API_URL = "http://localhost:5005";
 
@@ -9,7 +8,6 @@ function ProfileEditPage(props) {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [picture, setPicture] = useState("");
   const [avatar, setAvatar] = useState("");
   const [biography, setBiography] = useState("");
@@ -38,7 +36,6 @@ function ProfileEditPage(props) {
         setName(theArtist.name);
         setUsername(theArtist.username);
         setEmail(theArtist.email);
-        setPassword(theArtist.password);
         setPicture(theArtist.picture);
         setAvatar(theArtist.avatar);
         setBiography(theArtist.biography);
@@ -51,7 +48,7 @@ function ProfileEditPage(props) {
     e.preventDefault();
     const storedToken = localStorage.getItem("authToken");
     // Create an object representing the body of the PUT request
-    const requestBody = { name, username, email, password, picture, avatar, biography, background};
+    const requestBody = { name, username, email, picture, avatar, biography, background};
 
     // Make a PUT request to update the artist
     axios
@@ -78,7 +75,6 @@ function ProfileEditPage(props) {
   };
   return (
     <div className="ProfileEditPage">
-      <Navbar />
       <form onSubmit={handleFormSubmit}>
         <label>Name:</label>
         <input
@@ -102,14 +98,6 @@ function ProfileEditPage(props) {
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <label>Password:</label>
-        <input
-          type="text"
-          name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
         />
 
         <label>Picture:</label>

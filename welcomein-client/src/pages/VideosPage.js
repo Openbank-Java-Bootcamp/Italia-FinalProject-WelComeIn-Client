@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link} from "react-router-dom";
-import Navbar from "../components/Navbar";
 
 const API_URL = "http://localhost:5005";
 
@@ -28,9 +27,8 @@ function VideosPage() {
   }, []);
   return (
     <div>
-      <Navbar />
       {videos.map((video) => (
-        <Link to={`/api/videos/${video.id}`}>
+        <Link to={`/videos/${video.id}`}>
           <img src={`${video.file}`} />
           <h3>{video.name}</h3>
         </Link>

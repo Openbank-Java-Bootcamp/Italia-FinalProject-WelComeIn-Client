@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import Navbar from "../components/Navbar";
 
 const API_URL = "http://localhost:5005";
 
@@ -70,7 +69,6 @@ function LinkEditPage(props) {
   };
   return (
     <div className="LinkEditPage">
-      <Navbar />
       <form onSubmit={handleFormSubmit}>
         <label>Title:</label>
         <input

@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link} from "react-router-dom";
-import Navbar from "../components/Navbar";
+import { Link, useParams} from "react-router-dom";
 
 const API_URL = "http://localhost:5005";
 
-function ImagesPage() {
-  const [images, setImages] = useState();
+function ImagesPage(props) {
+  const [images, setImages] = useState([]);
+
+  // Get the URL parameter `:galleryId`
+  const { galleryId } = useParams();
+  console.log(galleryId);
 
   const getAllImages = () => {
       // Get the token from the localStorage
@@ -14,7 +17,7 @@ function ImagesPage() {
 
       // Send the token through the request "Authorization" Headers
       axios
-      .get(`${API_URL}/api/images`, {
+      .get(`${API_URL}/api/images/gallery/${galleryId}`, {
           headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => setImages(response.data))
@@ -30,10 +33,9 @@ function ImagesPage() {
 
   }, []);
   return (
-    <div>
-      <Navbar />
+    <div className="ImagesPage">
       {images.map((image) => (
-        <Link to={`/api/images/${image.id}`}>
+        <Link to={`/images/${image.id}`}>
           <img src="{image.file}" alt={`${image.title} Image`}/>
           <h3>{image.title}</h3>
         </Link>

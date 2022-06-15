@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import {useParams } from "react-router-dom";
-import Navbar from "../components/Navbar";
 
 const API_URL = "http://localhost:5005";
 
@@ -33,7 +32,6 @@ useEffect(() => {
 
   return (
     <div className="ImageContentPage">
-        <Navbar />
         <img 
             src={image.file}
             alt={`${image.title} File`}

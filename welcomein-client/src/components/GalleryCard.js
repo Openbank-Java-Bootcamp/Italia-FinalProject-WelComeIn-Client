@@ -7,7 +7,7 @@ export default function GalleryCard({ id, name, icon }) {
 
   return (
     <div className="GalleryCard">
-      <Link to={`/api/galleries/${id}`}>
+      <Link to={`/galleries/${id}`}>
         <img src={`${icon}`} />
         <h3>{name} Gallery</h3>
       </Link>

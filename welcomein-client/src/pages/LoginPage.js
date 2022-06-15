@@ -28,7 +28,7 @@ function LoginPage(props) {
 
         storeToken(response.data.authToken);
         authenticateUser();
-        navigate("/api/galleries"); // <== ADD
+        navigate("/galleries"); // <== ADD
       })
       .catch((error) => {
         const errorDescription = error.response.data.errors[0].defaultMessage;

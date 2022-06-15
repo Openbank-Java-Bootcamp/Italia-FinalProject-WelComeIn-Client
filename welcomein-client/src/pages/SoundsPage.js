@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link} from "react-router-dom";
-import Navbar from "../components/Navbar";
 
 const API_URL = "http://localhost:5005";
 
@@ -28,9 +27,8 @@ function SoundsPage() {
   }, []);
   return (
     <div>
-      <Navbar />
       {sounds.map((sound) => (
-        <Link to={`/api/sounds/${sound.id}`}>
+        <Link to={`/sounds/${sound.id}`}>
           <img src={`${sound.file}`} />
           <h3>{sound.name}</h3>
         </Link>

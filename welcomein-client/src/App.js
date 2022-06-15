@@ -20,13 +20,17 @@ import SoundEditPage from './pages/SoundEditPage';
 import VideosPage from './pages/VideosPage';
 import VideoContentPage from './pages/VideoContentPage';
 import VideoEditPage from './pages/VideoEditPage';
+import UploadingPage from './pages/UploadingPage';
+
 import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
+import Navbar from './components/Navbar';
 
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <Routes>
       <Route
           path="/"
@@ -52,7 +56,7 @@ function App() {
         />
 
         <Route
-          path="/api/artists/:artistId"
+          path="/artists/:artistId"
           element={
             <IsPrivate> 
               <ProfilePage />
@@ -61,7 +65,7 @@ function App() {
         />
 
         <Route
-          path="/api/artists/:artistId/edit"
+          path="/artists/:artistId/edit"
           element={
             <IsPrivate> 
               <ProfileEditPage />
@@ -70,7 +74,7 @@ function App() {
         />
 
         <Route
-          path="/api/galleries"
+          path="/galleries"
           element={
             <IsPrivate> 
               <GalleriesPage />
@@ -79,7 +83,7 @@ function App() {
         />
 
         <Route
-          path="/api/galleries/:galleryId"
+          path="/galleries/:galleryId"
           element={
             <IsPrivate> 
               <GalleryContentPage />
@@ -88,7 +92,7 @@ function App() {
         />
 
         <Route
-          path="/api/galleries/:galleryId/edit"
+          path="/galleries/:galleryId/edit"
           element={
             <IsPrivate> 
               <GalleryEditPage />
@@ -97,7 +101,7 @@ function App() {
         />
         
         <Route
-          path="/api/images"
+          path="/images"
           element={
             <IsPrivate> 
               <ImagesPage />
@@ -105,7 +109,7 @@ function App() {
           }
         />
         <Route
-          path="/api/images/:imageId"
+          path="/images/:imageId"
           element={
             <IsPrivate> 
               <ImageContentPage />
@@ -114,7 +118,7 @@ function App() {
         />
 
         <Route
-          path="/api/images/:imageId/edit"
+          path="/images/:imageId/edit"
           element={
             <IsPrivate> 
               <ImageEditPage />
@@ -123,7 +127,7 @@ function App() {
         />
           
         <Route
-          path="/api/links"
+          path="/links"
           element={
             <IsPrivate> 
               <LinksPage />
@@ -131,7 +135,7 @@ function App() {
           }
         />
         <Route
-          path="/api/links/:linkId"
+          path="/links/:linkId"
           element={
             <IsPrivate> 
               <LinkContentPage />
@@ -140,7 +144,7 @@ function App() {
         />
 
         <Route
-          path="/api/links/:linkId/edit"
+          path="/links/:linkId/edit"
           element={
             <IsPrivate> 
               <LinkEditPage />
@@ -149,7 +153,7 @@ function App() {
         />
 
         <Route
-          path="/api/sounds"
+          path="/sounds"
           element={
             <IsPrivate> 
               <SoundsPage />
@@ -157,7 +161,7 @@ function App() {
           }
         />
         <Route
-          path="/api/sounds/:soundId"
+          path="/sounds/:soundId"
           element={
             <IsPrivate> 
               <SoundContentPage />
@@ -166,7 +170,7 @@ function App() {
         />
 
         <Route
-          path="/api/sounds/:soundId/edit"
+          path="/sounds/:soundId/edit"
           element={
             <IsPrivate> 
               <SoundEditPage />
@@ -175,7 +179,7 @@ function App() {
         />
 
         <Route
-          path="/api/videos"
+          path="/videos"
           element={
             <IsPrivate> 
               <VideosPage />
@@ -183,7 +187,7 @@ function App() {
           }
         />
         <Route
-          path="/api/videos/:videoId"
+          path="/videos/:videoId"
           element={
             <IsPrivate> 
               <VideoContentPage />
@@ -192,13 +196,23 @@ function App() {
         />
 
         <Route
-          path="/api/videos/:videoId/edit"
+          path="/videos/:videoId/edit"
           element={
             <IsPrivate> 
               <VideoEditPage />
             </IsPrivate>
           }
         />
+
+        <Route
+          path="/upload"
+          element={
+            <IsPrivate> 
+              <UploadingPage />
+            </IsPrivate>
+          }
+        />
+
 
       </Routes>
     </div>

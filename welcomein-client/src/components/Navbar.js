@@ -16,10 +16,13 @@ function Navbar() {
       
       {isLoggedIn && (
         <>
-          <Link to="/api/galleries">
+          <Link to="/galleries">
             <button>Galeries</button>
           </Link>
-          <Link to="/api/artists/:artistId">
+          <Link to="/upload">
+            <button>Upload</button>
+          </Link>
+          <Link to="/artists/:artistId">
             <button>Profile</button>
           </Link>
           <button onClick={logOutUser}>Logout</button>

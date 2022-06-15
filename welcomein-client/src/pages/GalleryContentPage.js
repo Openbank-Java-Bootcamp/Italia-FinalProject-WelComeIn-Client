@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-import Navbar from "../components/Navbar";
 
 const API_URL = "http://localhost:5005";
 
@@ -34,8 +33,6 @@ function GalleryContentPage(props) {
 
   return (
     <div className="GalleryContentPage">
-      <Navbar />
-
       {/* Edit profile */}
       <div className="GalleryBanner">
         <h2>{gallery.name} Gallery</h2>
@@ -49,30 +46,31 @@ function GalleryContentPage(props) {
       </div>
 
       <div className="GallerySounds">
-        <Link to={`/api/sounds`}>
+        <Link to="/sounds" galleryId={`:${galleryId}`}>
           <img src="" alt="sound icon" />
           <h3>Sounds</h3>
         </Link>
       </div>
       <div className="GalleryImages">
-        <Link to={`/api/images`}>
+        <Link to="/images">
           <img src="" alt="image icon" />
           <h3>Images</h3>
         </Link>
       </div>
       <div className="GalleryVideos">
-        <Link to={`/api/videos`}>
+        <Link to="/videos">
           <img src="" alt="video icon" />
           <h3>Videos</h3>
         </Link>
       </div>
       <div className="GalleryLinks">
-        <Link to={`/api/links`}>
+        <Link to="/links">
           <img src="" alt="link icon" />
           <h3>Links</h3>
         </Link>
       </div>
       <div className="GalleryAvatar">
+        {/* link to profile(?) */}
         <img src="" alt="avatar" />
       </div>
     </div>
