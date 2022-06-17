@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useContext, useState, useEffect } from "react";
+import { AuthContext } from "../context/auth.context";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 import gal1 from "../images/gallery1.png";
 import gal2 from "../images/gallery2.png";
 import gal3 from "../images/gallery3.png";
@@ -24,76 +25,43 @@ import img12 from "../images/imageIcon12.png";
 
 const API_URL = "http://localhost:5005";
 
-function GalleryEditPage(props) {
+function UploadGallery() {
+  const { user } = useContext(AuthContext);
+
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("");
   const [slogan, setSlogan] = useState("");
   const [imagesIcon, setImagesIcon] = useState("");
-
-  // Get the URL parameter `:galleryId`
-  const { galleryId } = useParams();
+  const artistId = user.id;
 
   const navigate = useNavigate();
 
-  // This effect will run after the initial render and each time
-  // the gallery id coming from URL parameter `galleryId` changes
-  useEffect(() => {
-    const storedToken = localStorage.getItem("authToken");
-
-    axios
-      .get(`${API_URL}/api/galleries/${galleryId}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {
-        /* 
-          We update the state with the gallery data coming from the response.
-          This way we set inputs to show the actual name, icon, slogan and background of the gallery
-        */
-        const theArtist = response.data;
-        setName(theArtist.name);
-        setIcon(theArtist.icon);
-        setSlogan(theArtist.slogan);
-        setImagesIcon(theArtist.imagesIcon);
-      })
-      .catch((error) => console.log(error));
-  }, [galleryId]);
-
-  const handleFormSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const storedToken = localStorage.getItem("authToken");
     // Create an object representing the body of the PUT request
-    const requestBody = { name, icon, slogan, imagesIcon };
+    const requestBody = { name, icon, slogan, imagesIcon, artistId };
+
     // Make a PUT request to update the gallery
     axios
-      .put(`${API_URL}/api/galleries/${galleryId}`, requestBody, {
+      .post(`${API_URL}/api/galleries`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
         // Once the request is resolved successfully and the gallery
         // is updated we navigate back to the content page
-        navigate("/galleries/" + galleryId);
-      });
-  };
-
-  const deleteGallery = () => {
-    const storedToken = localStorage.getItem("authToken");
-    axios
-      .delete(`${API_URL}/api/galleries/${galleryId}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then(() => {
         navigate("/galleries");
       })
-      .catch((err) => console.log(err));
+      .catch((error) => console.log(error));
   };
 
-  const randomizeIcon = () => {
+  const randomizeIcon = (e) => {
     const nums = [gal1, gal2, gal3, gal4, gal5, gal6, gal7, gal8];
     const randomNum = Math.floor(Math.random() * nums.length);
     setIcon(nums[randomNum]);
   };
 
-  const randomizeImagesIcon = () => {
+  const randomizeImagesIcon = (e) => {
     const nums = [
       img1,
       img2,
@@ -118,9 +86,9 @@ function GalleryEditPage(props) {
   }, []);
 
   return (
-    <div className="GalleryEditPage">
-      <h3>Edit {name} Gallery</h3>
-      <form onSubmit={handleFormSubmit}>
+    <div className="UploadGallery">
+      <h3>Upload New Gallery</h3>
+      <form onSubmit={handleSubmit}>
         <label>Name:</label>
         <input
           type="text"
@@ -129,6 +97,7 @@ function GalleryEditPage(props) {
           onChange={(e) => setName(e.target.value)}
         />
         <div />
+        <div />
         <label>Slogan:</label>
         <input
           type="text"
@@ -136,6 +105,7 @@ function GalleryEditPage(props) {
           value={slogan}
           onChange={(e) => setSlogan(e.target.value)}
         />
+        <div />
         <div />
         <div className="ranGal">
           <img src={icon} width="50%" />
@@ -150,15 +120,10 @@ function GalleryEditPage(props) {
             Randomize Images Icon
           </button>
         </div>
-        <div />
-        <button type="submit">Update Gallery</button>
+        <button type="submit">Upload Gallery</button>
       </form>
-
-      <button onClick={deleteGallery} type="delete">
-        Delete Gallery
-      </button>
     </div>
   );
 }
 
-export default GalleryEditPage;
+export default UploadGallery;

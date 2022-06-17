@@ -1,11 +1,124 @@
+*,
+:after,
+:before {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* font-size: 62.5%; */
+  background-color: #f2ff0138;
+  font-family: sans-serif;
+  line-height: 1.15;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
+  font: normal 130%/1.4 Manrope;
+  letter-spacing: 0.03em;
   margin: 0;
   /* background-image: url("https://img.itch.zone/aW1nLzQ1NDY3MTcuZ2lm/original/IMY3k4.gif"); */
+}
+
+.site,
+.site.light {
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  background: #f9f5f2;
+  color: #000;
+}
+
+.site-header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.site-header .logo {
+  width: 117px;
+  font-style: italic;
+}
+
+.logo {
+  font: 300 2.5rem/3rem Cormorant, Garamond, sans-serif;
+  color: #000;
+  margin-left: 1%;
+}
+
+.logo:hover {
+  font-family: Brush Script MT, monospace;
+}
+
+a:-webkit-any-link {
+  /* color: -webkit-link; */
+  cursor: pointer;
+  /* text-decoration: underline; */
 }
 
 a {
   list-style: none;
   color: black;
+  text-decoration: none;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  background-color: transparent;
+}
+
+.HomePage {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.right-part,
+.home-message {
+  align-items: center;
+  justify-content: flex-end;
+  /* align-self: flex-end; */
+}
+
+.home-message {
+  margin-right: 10%;
+}
+
+.row {
+  /* display: -webkit-box;
+  display: -ms-flexbox; */
+  display: flex;
+}
+
+div {
+  display: block;
+}
+
+.site-header button {
+  display: block;
+  background-color: #fbdc6c;
+  border-radius: 50%;
+  border: 1px solid rgb(0, 0, 0);
+  height: 30px;
+}
+
+.site-header button:hover {
+  font-family: monospace;
+  background-color: #010101;
+  color: #fbdc6c;
 }
 
 button,
@@ -30,8 +143,8 @@ textarea {
 }
 
 nav {
-  background: #515f7d;
-  color: white;
+  background: #fbb86c;
+  color: rgb(255, 255, 255);
   padding: 0px 20px;
   box-shadow: 0px 1px 2px gray;
   width: 100%;
@@ -46,6 +159,363 @@ nav li {
   font-weight: 600;
 }
 
+.HomePage {
+  justify-content: space-between;
+}
+
+.home-gif {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+/* .home-gif img{
+	box-shadow: inset 0px 0px 10px 20px white;
+} */
+
+.GalleriesPage {
+  column-count: 3;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.GalleriesPage::before {
+  content: "";
+  background-image: url("https://i.imgur.com/AeQubZf.png");
+  background-repeat: repeat-y;
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.65;
+  margin-top: 110px;
+}
+
+.GalleriesPage h3 {
+  margin-top: 0%;
+  line-height: 0;
+}
+
+.GalleriesPage a {
+  position: relative;
+  /* color: #ffffff;  */
+  text-align: center;
+  font: sans-serif;
+}
+
+.GalleriesPage a:hover {
+  font: sans-serif;
+}
+
+.GalleryContentPage {
+  content: "";
+  background-image: url("https://cdn.mos.cms.futurecdn.net/EFXSes9UCfsyRVoNeQ2ZTB-970-80.png.webp");
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  margin-top: 110px;
+}
+
+.GalleryBanner {
+  width: 60%;
+  background-color: rgba(113, 193, 230, 0.3);
+  border-radius: 10%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-top: 5%;
+  margin-bottom: 2%;
+  margin-right: 20%;
+  margin-left: 20%;
+}
+
+.GalleryBanner a,
+.ProfileCont a {
+  display: block;
+  background-color: #fbdc6c;
+  border-radius: 50%;
+  border: 1px solid rgb(0, 0, 0);
+  height: 30px;
+  justify-content: flex-end;
+}
+
+.GalleryBanner a:hover,
+.ProfileCont a:hover {
+  font-family: monospace;
+  background-color: #010101;
+  color: #fbdc6c;
+}
+
+.GalleryImages {
+  background-image: url("https://64.media.tumblr.com/5a95df1767d37cecd6b10268f4c742e4/tumblr_mxjujoCyDN1qbw2q1o5_640.gifv");
+  background-size: cover;
+  position: absolute;
+  background-color: #f9cea6;
+  margin-right: 20%;
+  margin-left: 20%;
+  padding-top: 10%;
+  padding-bottom: 30%;
+  position: relative;
+}
+
+.ImagesDisp {
+  position: relative;
+}
+
+.ImagesCont {
+  position: absolute;
+  top: 25%;
+  left: 35%;
+}
+
+.ImagesCont h3 {
+  margin-top: 0%;
+  line-height: 0;
+}
+
+.ImagesPage {
+  column-count: 4;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.ImagesPage::before {
+  content: "";
+  background-image: url("https://media.istockphoto.com/photos/crumpled-yellow-notepad-picture-id184921412?b=1&k=20&m=184921412&s=170667a&w=0&h=Z4lLAd7FGsfn9pQqJAA7xfVb5KujndA6SQXtoWOwJr4=");
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.65;
+  margin-top: 110px;
+}
+
+.UploadingPage {
+  background-color: #061f4b;
+  background-image: url("https://t4.ftcdn.net/jpg/03/39/16/41/360_F_339164168_EHlFVZnP5n4BCh4huPeILoPyD0LEhWzl.jpg");
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  margin-top: 110px;
+}
+
+.selector {
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10%;
+  margin-bottom: 2%;
+  margin-right: 20%;
+  margin-left: 20%;
+}
+
+.selector button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.selector h5 {
+  margin-left: 30%;
+  margin-right: 30%;
+  align-items: center;
+  color: #061f4b;
+  font: currier new;
+  background-color: #6378e3;
+  border-radius: 50%;
+  border: 1px solid rgb(0, 0, 0);
+  height: 30px;
+}
+
+.selector h5:hover {
+  color: #6378e3;
+  background-color: #061f4b;
+}
+
+.UploadForm,
+.ProfileEditPage {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.UploadGallery,
+.UploadImage {
+  margin: 5%;
+}
+
+.UploadGallery,
+.UploadImage,
+.GalleryEditPage,
+.ProfileEditPage {
+  width: 50%;
+  background-color: #5069f6;
+  max-width: 450px;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  margin: 0px 0px 10px 0px;
+  border: 1px solid #0f2270;
+  padding: 20px;
+  box-shadow: inset 0px 0px 15px #0f2270;
+  -moz-box-shadow: inset 0px 0px 15px #0f2270;
+  -webkit-box-shadow: inset 0px 0px 15px #0f2270;
+}
+
+.UploadForm label,
+.GalleryEditPage label,
+.ProfileEditPage label {
+  display: block;
+  margin-bottom: 10px;
+  float: left;
+  width: 100px;
+  color: rgb(33, 0, 0);
+  font-weight: bold;
+  font-size: 13px;
+  text-shadow: 1px 1px 1px rgba(255, 242, 0, 0.443);
+}
+
+.UploadGallery h3,
+.UploadImage h3,
+.GalleryEditPage h3,
+.ProfileEditPage h3 {
+  color: #140b61;
+  padding: 0px 8px 3px 8px;
+  margin-bottom: 8px;
+  text-shadow: 1px 1px 1px rgba(255, 242, 0, 0.648);
+}
+
+.UploadForm input,
+.UploadForm Select,
+.UploadForm textarea,
+.GalleryEditPage input,
+.GalleryEditPag Select,
+.GalleryEditPag textarea .ProfileEditPage input,
+.ProfileEditPage Select,
+.ProfileEditPage textarea {
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border: 1px solid #fa7942;
+  outline: none;
+  color: #d53912;
+  padding: 5px 8px 5px 8px;
+  box-shadow: inset 1px 1px 4px #ffd5e7;
+  -moz-box-shadow: inset 1px 1px 4px #ffd5e7;
+  -webkit-box-shadow: inset 1px 1px 4px #ffd5e7;
+  background: #ffeff6;
+  width: 50%;
+}
+
+button[type="select"] {
+  background: #fee2c2;
+  border: 1px solid #c97d4a;
+  padding: 5px 15px 5px 15px;
+  color: #5d45e4;
+  box-shadow: inset -1px -1px 3px #ff62a7;
+  -moz-box-shadow: inset -1px -1px 3px #ff62a7;
+  -webkit-box-shadow: inset -1px -1px 3px #ff62a7;
+  border-radius: 3px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+
+button[type="button"] {
+  background: #fee2c2;
+  border: 1px solid #c97d4a;
+  padding: 5px 15px 5px 15px;
+  color: #5d45e4;
+  box-shadow: inset -1px -1px 3px #ff62a7;
+  -moz-box-shadow: inset -1px -1px 3px #ff62a7;
+  -webkit-box-shadow: inset -1px -1px 3px #ff62a7;
+  border-radius: 3px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+
+button[type="submit"] {
+  background: #eb8d3b;
+  border: 1px solid #c94a81;
+  padding: 5px 15px 5px 15px;
+  color: #ffe7cb;
+  box-shadow: inset -1px -1px 3px #ff62a7;
+  -moz-box-shadow: inset -1px -1px 3px #ff62a7;
+  -webkit-box-shadow: inset -1px -1px 3px #ff62a7;
+  border-radius: 3px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  font-weight: bold;
+}
+
+button[type="delete"] {
+  background: #eb503b;
+  border: 1px solid #c94a81;
+  padding: 5px 15px 5px 15px;
+  color: #ffe7cb;
+  box-shadow: inset -1px -1px 3px #ff62a7;
+  -moz-box-shadow: inset -1px -1px 3px #ff62a7;
+  -webkit-box-shadow: inset -1px -1px 3px #ff62a7;
+  border-radius: 3px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  font-weight: bold;
+}
+
+.GalleryEditPage {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ProfileCont {
+  padding-bottom: 25%;
+  margin: 25%;
+}
+
+.ProfileCont a {
+  width: 50%;
+  margin-left: 25%;
+}
+
+.ProfilePage {
+  display: flex;
+  background-image: url("https://i0.wp.com/mir-s3-cdn-cf.behance.net/project_modules/2800_opt_1/a568d287142777.5daf1e5bd1472.jpg?w=1020&ssl=1");
+  background-size: cover;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  margin-top: 0%;
+}
+
+.ProfilePic {
+  border-radius: 50%;
+}
+
+.ProfileEditPage {
+  padding-bottom: 5%;
+  margin: 10%;
+  margin-left: 0%;
+}
+
 .card {
   width: 400px;
   padding: 10px;
@@ -56,14 +526,6 @@ nav li {
   border-radius: 4px;
 }
 
-.ProjectCard h3::after {
-  content: url("https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/m3/icon-expand.png");
-  margin-left: 5px;
-}
-
-.EditProjectPage,
-.AddProject,
-.AddTask,
 .SignupPage,
 .LoginPage {
   background: #f9eec3;
@@ -77,23 +539,17 @@ nav li {
   border-radius: 4px;
 }
 
-.EditProjectPage {
-  background-color: rgb(239, 196, 88);
-}
-
 .SignupPage,
 .LoginPage {
-  background-color: #608dd5;
+  background-color: #f9cea6;
   margin-top: 10%;
+  border-radius: 40%;
 }
 
 .LoginPage {
-  background-color: #94a7c8;
+  background-color: #f8deb6;
 }
 
-.EditProjectPage form,
-.AddTask form,
-.AddProject form,
 .SignupPage form,
 .LoginPage form {
   display: flex;
@@ -101,16 +557,6 @@ nav li {
   align-items: center;
 }
 
-.AddTask button,
-.AddProject button {
-  display: block;
+.ImgText{
+  padding-bottom: 10%;
 }
-
-.TaskCard {
-  background-color: #dfeef9;
-}
-
-/* .HomePage {
-  background-image: url("https://i.pinimg.com/originals/bd/92/17/bd92170b5ce8b6a9c029eba704f87904.png");
-  background-size: cover;
-} */

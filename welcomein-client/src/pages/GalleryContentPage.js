@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
 import { Link, useParams } from "react-router-dom";
 
 const API_URL = "http://localhost:5005";
 
 function GalleryContentPage(props) {
+  const {user} = useContext(AuthContext);
   const [gallery, setGallery] = useState([]);
+  const [artist, setArtist] = useState([]);
 
   // Get the URL parameter `:galleryId`
   const { galleryId } = useParams();
@@ -23,57 +27,68 @@ function GalleryContentPage(props) {
       })
       .then((response) => setGallery(response.data))
       .catch((error) => console.log(error));
-      console.log(galleryId)
+  };
+
+  // Helper function that makes a GET request to the API
+  // and retrieves the artist by id
+  const getArtist = () => {
+    // Get the token from the localStorage
+    const storedToken = localStorage.getItem("authToken");
+
+    // Send the token through the request "Authorization" Headers
+    axios
+      .get(`${API_URL}/api/artists/${user.id}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => setArtist(response.data))
+      .catch((error) => console.log(error));
   };
 
   // We set this effect will run only once, after the initial render
   // by setting the empty dependency array - []
   useEffect(() => {
     getGallery();
+    getArtist();
   }, []);
+  console.log(gallery);
+  console.log(artist);
 
   return (
     <div className="GalleryContentPage">
       {/* Edit profile */}
       <div className="GalleryBanner">
-        <h2>{gallery.name} Gallery</h2>
-        {/* <h6>Curated by: {gallery.artist.name}</h6> */}
-        <img
-          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZSUyMHBob3RvfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-          alt="Name's profile pic"
-          className="ProfilePic"
-          width="15%"
-        />
-      </div>
+        <img src={gallery.icon} width="20%"/>
+        <div>
+          <h2>{gallery.name} Gallery</h2>
+          <p>{gallery.slogan}</p>
+        </div>
 
-      <div className="GallerySounds">
-        <Link to="/sounds" galleryId={`:${galleryId}`}>
-          <img src="" alt="sound icon" />
-          <h3>Sounds</h3>
+        <Link to={`/galleries/${galleryId}/edit`}>
+          EditGallery
         </Link>
+        {/* <div>
+          <h6>Curated by: {artist.name}</h6>
+          <img
+            src={artist.picture}
+            alt={`${artist.name}'s profile pic`}
+            className="ProfilePic"
+            width="15%"
+            />
+        </div> */}
       </div>
       <div className="GalleryImages">
-        <Link to="/images" galleryId={galleryId}>
-          <img src="" alt="image icon" />
-          <h3>Images</h3>
-        </Link>
+        <div className="ImagesCont">
+          <Link to={`/galleries/${galleryId}/images`} galleryId={galleryId}>
+            <img src={gallery.imagesIcon} width="20%" alt="image icon" />
+            <h3>Images</h3>
+          </Link>
+          </div>
       </div>
-      <div className="GalleryVideos">
-        <Link to="/videos">
-          <img src="" alt="video icon" />
-          <h3>Videos</h3>
-        </Link>
-      </div>
-      <div className="GalleryLinks">
-        <Link to="/links">
-          <img src="" alt="link icon" />
-          <h3>Links</h3>
-        </Link>
-      </div>
-      <div className="GalleryAvatar">
-        {/* link to profile(?) */}
+
+      {/* <div className="UserAvatar">
         <img src="" alt="avatar" />
-      </div>
+      </div> */}
+
     </div>
   );
 }

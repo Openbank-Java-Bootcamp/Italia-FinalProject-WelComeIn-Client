@@ -7,16 +7,32 @@ const API_URL = "http://localhost:5005";
 function ProfileEditPage(props) {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [picture, setPicture] = useState("");
-  const [avatar, setAvatar] = useState("");
   const [biography, setBiography] = useState("");
-  const [background, setBackground] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // Get the URL parameter `:artistId`
   const { artistId } = useParams();
 
   const navigate = useNavigate();
+
+
+  const onFormChange = (e) => {
+    let file = e.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = _handleReaderLoaded.bind(this);
+
+      reader.readAsBinaryString(file);
+    }
+  };
+
+  const _handleReaderLoaded = (readerEvt) => {
+    let binaryString = readerEvt.target.result;
+    setPicture(btoa(binaryString));
+  };
 
   // This effect will run after the initial render and each time
   // the artist id coming from URL parameter `artistId` changes
@@ -35,11 +51,10 @@ function ProfileEditPage(props) {
         const theArtist = response.data;
         setName(theArtist.name);
         setUsername(theArtist.username);
-        setEmail(theArtist.email);
         setPicture(theArtist.picture);
-        setAvatar(theArtist.avatar);
         setBiography(theArtist.biography);
-        setBackground(theArtist.background);
+        setEmail(theArtist.email);
+        setPassword(theArtist.password);
       })
       .catch((error) => console.log(error));
   }, [artistId]);
@@ -48,7 +63,7 @@ function ProfileEditPage(props) {
     e.preventDefault();
     const storedToken = localStorage.getItem("authToken");
     // Create an object representing the body of the PUT request
-    const requestBody = { name, username, email, picture, avatar, biography, background};
+    const requestBody = { name, username, picture, biography, email, password};
 
     // Make a PUT request to update the artist
     axios
@@ -58,7 +73,7 @@ function ProfileEditPage(props) {
       .then((response) => {
         // Once the request is resolved successfully and the artist
         // is updated we navigate back to the profile page
-        navigate("/api/artists/" + artistId);
+        navigate("/artists/profile");
       });
   };
 
@@ -75,7 +90,9 @@ function ProfileEditPage(props) {
   };
   return (
     <div className="ProfileEditPage">
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit} onChange={(e) => onFormChange(e)}>
+        
+      <h3>Edit Profile</h3>
         <label>Name:</label>
         <input
           type="text"
@@ -83,7 +100,7 @@ function ProfileEditPage(props) {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-
+        <div/>
         <label>Username:</label>
         <input
           type="text"
@@ -91,31 +108,15 @@ function ProfileEditPage(props) {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-
-        <label>Email:</label>
-        <input
-          type="text"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
+        <div/>
         <label>Picture:</label>
         <input
-          type="text"
-          name="picture"
-          value={picture}
-          onChange={(e) => setPicture(e.target.value)}
-        />
-
-        <label>Avatar:</label>
-        <input
-          type="text"
-          name="avatar"
-          value={avatar}
-          onChange={(e) => setAvatar(e.target.value)}
-        />
-
+         type="file"
+         name="picture"
+          id="picture"
+           accept=".jpeg, .png, .jpg"
+            />
+        <div/>
         <label>Biography:</label>
         <textarea
           name="biography"
@@ -123,18 +124,10 @@ function ProfileEditPage(props) {
           onChange={(e) => setBiography(e.target.value)}
         />
 
-        <label>Background:</label>
-        <input
-          type="text"
-          name="background"
-          value={background}
-          onChange={(e) => setBackground(e.target.value)}
-        />
 
         <button type="submit">Update Profile</button>
+        <button onClick={deleteAccount} type="delete">Delete Account</button>
       </form>
-
-      <button onClick={deleteAccount}>Delete Account</button>
     </div>
   )
 }
